@@ -1,5 +1,16 @@
 spring:
   application.name: colvir-k8s
 
+  datasource:
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+#    show-sql: 'true'
+
 hello:
   text: hello
