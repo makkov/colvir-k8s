@@ -12,5 +12,30 @@ spring:
       ddl-auto: update
 #    show-sql: 'true'
 
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: MyClusteredScheduler
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            dataSource: myDS
+            isClustered: true
+            clusterCheckinInterval: 20000
+      datasource:
+        myDS:
+          driver-class-name: org.postgresql.Driver
+          url: jdbc:postgresql://localhost:5432/postgres
+          username: postgres
+          password: postgres
+
+  liquibase:
+    change-log: "classpath:/liquibase/changelog-master.yaml"
+
 hello:
   text: hello
