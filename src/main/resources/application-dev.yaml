@@ -1,0 +1,5 @@
+spring:
+  application.name: colvir-k8s
+
+server:
+  port: 8081
